@@ -1,4 +1,4 @@
-package com.restaurantreservation.api.service.service;
+package com.restaurantreservation.api.service.appservice;
 
 import com.restaurantreservation.api.service.dto.user.SignupDto;
 import com.restaurantreservation.api.service.dto.user.UserDto;

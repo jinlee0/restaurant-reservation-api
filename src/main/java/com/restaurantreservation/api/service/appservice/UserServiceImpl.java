@@ -1,9 +1,8 @@
-package com.restaurantreservation.api.service.service;
+package com.restaurantreservation.api.service.appservice;
 
-import com.restaurantreservation.api.global.exception.impl.InternalServerError;
 import com.restaurantreservation.api.global.exception.impl.UserEmailAlreadyExists;
 import com.restaurantreservation.api.global.exception.impl.UserRoleIsAlreadyPartner;
-import com.restaurantreservation.api.global.util.SecurityUtil;
+import com.restaurantreservation.api.global.util.SecurityService;
 import com.restaurantreservation.api.service.dto.user.SignupDto;
 import com.restaurantreservation.api.service.dto.user.UserDto;
 import com.restaurantreservation.api.service.entity.User;
@@ -20,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final SecurityService securityService;
 
     @Override
     @Transactional
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
             throw new UserEmailAlreadyExists();
         User user = userRepository.save(User.builder()
                 .email(dto.getEmail())
-                .role(UserRole.CUSTOMER)
+                .role(UserRole.ROLE_CUSTOMER)
                 .password(passwordEncoder.encode(dto.getPassword()))
                 .build());
         return UserDto.from(user);
@@ -37,8 +37,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserDto updateUserRoleToPartner() {
-        String userEmail = SecurityUtil.getUserEmail().orElseThrow(InternalServerError::new);
-        User user = userRepository.findByEmail(userEmail).orElseThrow(InternalServerError::new);
+        User user = securityService.getUser();
         if (user.isPartner()) throw new UserRoleIsAlreadyPartner();
         user.registerToPartner();
         return UserDto.from(user);

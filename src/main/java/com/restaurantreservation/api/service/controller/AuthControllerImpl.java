@@ -1,7 +1,7 @@
 package com.restaurantreservation.api.service.controller;
 
+import com.restaurantreservation.api.service.appservice.AuthService;
 import com.restaurantreservation.api.service.dto.auth.AuthenticateDto;
-import com.restaurantreservation.api.service.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

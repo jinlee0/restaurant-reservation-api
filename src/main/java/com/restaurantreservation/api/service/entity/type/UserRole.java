@@ -1,5 +1,5 @@
 package com.restaurantreservation.api.service.entity.type;
 
 public enum UserRole {
-    PARTNER, CUSTOMER
+    ROLE_PARTNER, ROLE_CUSTOMER
 }

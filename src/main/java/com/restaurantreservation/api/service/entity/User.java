@@ -5,14 +5,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,22 +27,23 @@ public class User extends BaseEntity implements UserDetails {
     private UserRole role;
 
     @Builder
-    private User(String email, String password, UserRole role) {
+    public User(String id, LocalDateTime createdAt, LocalDateTime updatedAt, String email, String password, UserRole role) {
+        super(id, createdAt, updatedAt);
         this.email = email;
         this.password = password;
         this.role = role;
     }
 
     public void registerToPartner() {
-        this.role = UserRole.PARTNER;
+        this.role = UserRole.ROLE_PARTNER;
     }
 
     public boolean isPartner() {
-        return this.role == UserRole.PARTNER;
+        return this.role == UserRole.ROLE_PARTNER;
     }
 
     public boolean isCustomer() {
-        return this.role == UserRole.CUSTOMER;
+        return this.role == UserRole.ROLE_CUSTOMER;
     }
 
     @Override

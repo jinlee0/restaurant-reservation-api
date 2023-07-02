@@ -8,11 +8,11 @@ import com.restaurantreservation.api.global.exception.ErrorCode;
 import com.restaurantreservation.api.global.security.JwtAccessDeniedHandler;
 import com.restaurantreservation.api.global.security.JwtAuthenticationEntryPoint;
 import com.restaurantreservation.api.global.security.JwtManager;
+import com.restaurantreservation.api.service.appservice.AuthService;
 import com.restaurantreservation.api.service.dto.auth.AuthenticateDto;
 import com.restaurantreservation.api.service.dto.auth.TokenDto;
 import com.restaurantreservation.api.service.entity.User;
 import com.restaurantreservation.api.service.entity.type.UserRole;
-import com.restaurantreservation.api.service.service.AuthService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +49,7 @@ class AuthControllerTest {
     @DisplayName("authenticate 성공")
     void authenticateBasicPath() throws Exception {
         String rawPsd = "asdf1234";
-        User user = MockData.user("email@a.com", rawPsd, UserRole.CUSTOMER);
+        User user = MockData.securityUser("email@a.com", rawPsd, UserRole.ROLE_CUSTOMER);
 
         String token = "Bearer dkfjsdofkejfdkfj";
         given(

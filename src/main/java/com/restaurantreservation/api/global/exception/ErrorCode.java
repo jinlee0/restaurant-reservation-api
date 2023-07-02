@@ -14,7 +14,9 @@ public enum ErrorCode {
     USER_EMAIL_ALREADY_EXISTS(HttpStatus.BAD_REQUEST, "이미 사용중인 이메일입니다."),
     USER_ROLE_ALREADY_PARTNER(HttpStatus.BAD_REQUEST),
     AUTH_WRONG_PASSWORD(HttpStatus.UNAUTHORIZED),
-    AUTH_EMAIL_NOT_FOUND(HttpStatus.UNAUTHORIZED);
+    AUTH_EMAIL_NOT_FOUND(HttpStatus.UNAUTHORIZED),
+    USER_ALREADY_HAS_RESTAURANT(HttpStatus.BAD_REQUEST)
+    ;
     private final HttpStatus httpStatus;
     private final String message;
 

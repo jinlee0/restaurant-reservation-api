@@ -2,13 +2,15 @@ package com.restaurantreservation.api.service.entity;
 
 import com.restaurantreservation.api.global.util.LocaleUtil;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 
 @Getter
 @MappedSuperclass
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class BaseEntity {
     @Id
     @Column(name = "id", nullable = false, unique = true, updatable = false)

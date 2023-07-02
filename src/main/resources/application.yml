@@ -27,3 +27,5 @@ api:
     user:
       signup: /signup
       register-user-as-partner: /register-user-as-partner
+    restaurant:
+      save: /restaurants

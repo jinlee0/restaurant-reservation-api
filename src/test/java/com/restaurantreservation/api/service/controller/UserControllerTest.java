@@ -9,11 +9,11 @@ import com.restaurantreservation.api.global.security.JwtAccessDeniedHandler;
 import com.restaurantreservation.api.global.security.JwtAuthenticationEntryPoint;
 import com.restaurantreservation.api.global.security.JwtManager;
 import com.restaurantreservation.api.global.util.LocaleUtil;
+import com.restaurantreservation.api.service.appservice.UserServiceImpl;
 import com.restaurantreservation.api.service.dto.user.SignupDto;
 import com.restaurantreservation.api.service.dto.user.UserDto;
 import com.restaurantreservation.api.service.entity.User;
 import com.restaurantreservation.api.service.entity.type.UserRole;
-import com.restaurantreservation.api.service.service.UserServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +55,7 @@ class UserControllerTest {
         String url = base + signup;
         String email = "email@a.com";
         String password = "asdf1234";
-        UserRole role = UserRole.CUSTOMER;
+        UserRole role = UserRole.ROLE_CUSTOMER;
         LocalDateTime createdAt = LocaleUtil.DateTime.now();
         given(userService.saveUser(any()))
             .willReturn(
@@ -103,10 +103,10 @@ class UserControllerTest {
     @Test
     @DisplayName("registerUserAsPartner 성공")
     void registerUserAsPartnerBasicPath() throws Exception {
-        User user = MockData.user(
+        User user = MockData.securityUser(
             "email@a.com",
             "asdf1234",
-            UserRole.CUSTOMER
+            UserRole.ROLE_CUSTOMER
         );
         given(
             userService.updateUserRoleToPartner()
@@ -114,7 +114,7 @@ class UserControllerTest {
             UserDto
                 .builder()
                 .email(user.getEmail())
-                .role(UserRole.PARTNER)
+                .role(UserRole.ROLE_PARTNER)
                 .createdAt(user.getCreatedAt())
                 .updatedAt(user.getUpdatedAt())
                 .build()
@@ -127,7 +127,7 @@ class UserControllerTest {
                     .contentType(MediaType.APPLICATION_JSON)
             ).andExpect(status().isOk())
             .andExpect(jsonPath("$.email").value(user.getEmail()))
-            .andExpect(jsonPath("$.role").value(UserRole.PARTNER.toString()))
+            .andExpect(jsonPath("$.role").value(UserRole.ROLE_PARTNER.toString()))
             .andExpect(jsonPath("$.createdAt").value(user.getCreatedAt().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)))
             .andExpect(jsonPath("$.updatedAt").value(user.getUpdatedAt().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)));
     }

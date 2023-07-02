@@ -1,4 +1,4 @@
-package com.restaurantreservation.api.service.service;
+package com.restaurantreservation.api.service.appservice;
 
 import com.restaurantreservation.api.global.exception.impl.EmailNotFoundOnAuth;
 import com.restaurantreservation.api.global.exception.impl.WrongPassword;

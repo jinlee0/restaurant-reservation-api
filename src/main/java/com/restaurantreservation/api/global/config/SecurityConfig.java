@@ -21,7 +21,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import java.util.Arrays;
 
 @EnableWebSecurity
-@EnableMethodSecurity
+@EnableMethodSecurity(proxyTargetClass = true) // proxyTargetClass가 false면 test에서 preAuthorize 등이 붙은 엔드포인트를 찾지 못함.
 @RequiredArgsConstructor
 @Slf4j
 @Configuration

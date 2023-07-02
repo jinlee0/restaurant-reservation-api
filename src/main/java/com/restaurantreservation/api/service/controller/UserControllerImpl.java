@@ -1,8 +1,8 @@
 package com.restaurantreservation.api.service.controller;
 
+import com.restaurantreservation.api.service.appservice.UserService;
 import com.restaurantreservation.api.service.dto.user.RegisterUserAsPartnerDto;
 import com.restaurantreservation.api.service.dto.user.SignupDto;
-import com.restaurantreservation.api.service.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
