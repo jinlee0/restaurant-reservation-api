@@ -1,0 +1,32 @@
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zerobase_restaurant_reservation?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+jwt:
+  secret: 7780b36b5b119d565f94a644716c4e23b267be700986a8d34a56594965e25b7d8780b36b5b119d565f94a644716c4e23b267be700986a8d34a56594965e25b7d880b36b5b119d565f94a644716c4e23b267be700986a8d34a56594965e25b7d8
+  expired-millis: 86400000
+
+api:
+  v1:
+    pub: ${api.v1.auth.authenticate}, ${api.v1.user.signup}
+    base: /api/v1
+    auth:
+      authenticate: /authenticate
+    user:
+      signup: /signup
+      register-user-as-partner: /register-user-as-partner
