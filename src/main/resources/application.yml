@@ -20,7 +20,7 @@ jwt:
 
 api:
   v1:
-    pub: ${api.v1.auth.authenticate}, ${api.v1.user.signup}
+    pub: ${api.v1.auth.authenticate}, ${api.v1.user.signup}, ${api.v1.restaurant.list}
     base: /api/v1
     auth:
       authenticate: /authenticate
@@ -29,3 +29,4 @@ api:
       register-user-as-partner: /register-user-as-partner
     restaurant:
       save: /restaurants
+      list: /restaurants

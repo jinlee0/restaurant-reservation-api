@@ -2,8 +2,10 @@ package com.restaurantreservation.api.service.controller;
 
 import com.restaurantreservation.api.service.appservice.RestaurantManagementService;
 import com.restaurantreservation.api.service.dto.restaurant.RestaurantRegistrationDto;
+import com.restaurantreservation.api.service.dto.restaurant.RetrieveRestaurantDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,13 @@ public class RestaurantManagementControllerImpl implements RestaurantManagementC
     @ResponseStatus(HttpStatus.CREATED)
     public RestaurantRegistrationDto.Response registerRestaurant(@RequestBody @Valid RestaurantRegistrationDto.Request dto) {
         return RestaurantRegistrationDto.Response.from(restaurantManagementService.saveRestaurant(dto));
+    }
+
+    @Override
+    @GetMapping("${api.v1.restaurant.list}")
+    @ResponseStatus(HttpStatus.OK)
+    public RetrieveRestaurantDto retrieveRestaurants(Pageable pageable) {
+        return RetrieveRestaurantDto.from(restaurantManagementService.retrieveRestaurants(pageable));
     }
 
 }

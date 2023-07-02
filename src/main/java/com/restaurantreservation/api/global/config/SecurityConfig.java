@@ -58,7 +58,6 @@ public class SecurityConfig {
         for (int i = 0; i < publicPaths.length; i++) {
             res[i] = pathBase + publicPaths[i];
         }
-        System.out.println(Arrays.toString(res) + " " + res.length);
         return res;
     }
 }

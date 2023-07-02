@@ -12,6 +12,8 @@ import com.restaurantreservation.api.service.entity.restaurant.VoLocation;
 import com.restaurantreservation.api.service.repository.RestaurantRepository;
 import com.restaurantreservation.api.service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,5 +51,10 @@ public class RestaurantManagementServiceImpl implements RestaurantManagementServ
                 ).build()
         );
         return RestaurantDto.from(restaurant);
+    }
+
+    @Override
+    public Page<Restaurant> retrieveRestaurants(Pageable pageable) {
+        return restaurantRepository.findAll(pageable);
     }
 }
