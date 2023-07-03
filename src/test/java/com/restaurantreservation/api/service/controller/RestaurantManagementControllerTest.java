@@ -11,8 +11,8 @@ import com.restaurantreservation.api.global.util.LocaleUtil;
 import com.restaurantreservation.api.service.appservice.RestaurantManagementServiceImpl;
 import com.restaurantreservation.api.service.dto.restaurant.RestaurantDto;
 import com.restaurantreservation.api.service.dto.restaurant.RestaurantRegistrationDto;
-import com.restaurantreservation.api.service.entity.User;
-import com.restaurantreservation.api.service.entity.type.UserRole;
+import com.restaurantreservation.api.service.entity.user.User;
+import com.restaurantreservation.api.service.entity.user.UserRole;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,15 +107,12 @@ class RestaurantManagementControllerTest {
     @Test
     @DisplayName("음식점 등록 실패: role")
     void registerWrongRole() throws Exception {
-        User manager = MockData.securityUser(UserRole.ROLE_CUSTOMER);
         String name = UUID.randomUUID().toString();
         String description = UUID.randomUUID().toString();
         String addressMain = UUID.randomUUID().toString();
         String addressDetail = UUID.randomUUID().toString();
         Double latitude = new Random().nextDouble(-90, 91);
         Double longitude = new Random().nextDouble(-180, 181);
-        LocalDateTime createdAt = LocaleUtil.DateTime.now();
-        LocalDateTime updatedAt = createdAt;
 
         mvc.perform(
                 post(base + restaurantPath)

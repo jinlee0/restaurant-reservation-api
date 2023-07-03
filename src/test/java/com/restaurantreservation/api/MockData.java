@@ -2,12 +2,15 @@ package com.restaurantreservation.api;
 
 import com.restaurantreservation.api.global.util.LocaleUtil;
 import com.restaurantreservation.api.service.entity.BaseEntity;
-import com.restaurantreservation.api.service.entity.User;
+import com.restaurantreservation.api.service.entity.reservation.Reservation;
+import com.restaurantreservation.api.service.entity.reservation.ReservationType;
+import com.restaurantreservation.api.service.entity.reservation.VoReservationStatus;
 import com.restaurantreservation.api.service.entity.restaurant.Restaurant;
 import com.restaurantreservation.api.service.entity.restaurant.VoAddress;
 import com.restaurantreservation.api.service.entity.restaurant.VoCoords;
 import com.restaurantreservation.api.service.entity.restaurant.VoLocation;
-import com.restaurantreservation.api.service.entity.type.UserRole;
+import com.restaurantreservation.api.service.entity.user.User;
+import com.restaurantreservation.api.service.entity.user.UserRole;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -79,6 +82,28 @@ public class MockData {
                             .build()
                     ).build()
             ).manager(manager)
+            .build();
+    }
+
+    public static Reservation reservation(User customer, Restaurant restaurant, ReservationType type) {
+        LocalDateTime now = LocaleUtil.DateTime.now();
+        return Reservation
+            .builder()
+            .id(UUID.randomUUID().toString())
+            .createdAt(now)
+            .updatedAt(now)
+            .dateTime(now.plusDays(7))
+            .numberOfPeople(new Random().nextInt(1, 10))
+            .requirements(UUID.randomUUID().toString())
+            .status(
+                VoReservationStatus
+                    .builder()
+                    .type(type)
+                    .typeSetAt(now)
+                    .build()
+            )
+            .customer(customer)
+            .restaurant(restaurant)
             .build();
     }
 }

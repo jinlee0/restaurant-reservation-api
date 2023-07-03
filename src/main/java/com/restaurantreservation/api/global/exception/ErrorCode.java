@@ -15,7 +15,8 @@ public enum ErrorCode {
     USER_ROLE_ALREADY_PARTNER(HttpStatus.BAD_REQUEST),
     AUTH_WRONG_PASSWORD(HttpStatus.UNAUTHORIZED),
     AUTH_EMAIL_NOT_FOUND(HttpStatus.UNAUTHORIZED),
-    USER_ALREADY_HAS_RESTAURANT(HttpStatus.BAD_REQUEST)
+    USER_ALREADY_HAS_RESTAURANT(HttpStatus.BAD_REQUEST),
+    RESTAURANT_NOT_FOUND(HttpStatus.NOT_FOUND)
     ;
     private final HttpStatus httpStatus;
     private final String message;

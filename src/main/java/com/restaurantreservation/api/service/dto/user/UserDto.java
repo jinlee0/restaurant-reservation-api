@@ -1,7 +1,7 @@
 package com.restaurantreservation.api.service.dto.user;
 
-import com.restaurantreservation.api.service.entity.User;
-import com.restaurantreservation.api.service.entity.type.UserRole;
+import com.restaurantreservation.api.service.entity.user.User;
+import com.restaurantreservation.api.service.entity.user.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

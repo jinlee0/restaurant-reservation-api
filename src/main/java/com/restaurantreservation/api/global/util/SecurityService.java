@@ -1,7 +1,7 @@
 package com.restaurantreservation.api.global.util;
 
 import com.restaurantreservation.api.global.exception.impl.InternalServerError;
-import com.restaurantreservation.api.service.entity.User;
+import com.restaurantreservation.api.service.entity.user.User;
 import com.restaurantreservation.api.service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

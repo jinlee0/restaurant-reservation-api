@@ -5,9 +5,9 @@ import com.restaurantreservation.api.global.exception.impl.UserAlreadyHasRestaur
 import com.restaurantreservation.api.global.util.SecurityService;
 import com.restaurantreservation.api.service.dto.restaurant.RestaurantDto;
 import com.restaurantreservation.api.service.dto.restaurant.RestaurantRegistrationDto;
-import com.restaurantreservation.api.service.entity.User;
 import com.restaurantreservation.api.service.entity.restaurant.Restaurant;
-import com.restaurantreservation.api.service.entity.type.UserRole;
+import com.restaurantreservation.api.service.entity.user.User;
+import com.restaurantreservation.api.service.entity.user.UserRole;
 import com.restaurantreservation.api.service.repository.RestaurantRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,13 +1,13 @@
 package com.restaurantreservation.api.service.appservice;
 
-import com.restaurantreservation.api.global.exception.impl.Forbidden;
+import com.restaurantreservation.api.global.exception.impl.AccessDenied;
 import com.restaurantreservation.api.global.exception.impl.UserEmailAlreadyExists;
 import com.restaurantreservation.api.global.exception.impl.UserRoleIsAlreadyPartner;
 import com.restaurantreservation.api.global.util.SecurityService;
 import com.restaurantreservation.api.service.dto.user.SignupDto;
 import com.restaurantreservation.api.service.dto.user.UserDto;
-import com.restaurantreservation.api.service.entity.User;
-import com.restaurantreservation.api.service.entity.type.UserRole;
+import com.restaurantreservation.api.service.entity.user.User;
+import com.restaurantreservation.api.service.entity.user.UserRole;
 import com.restaurantreservation.api.service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public UserDto updateUserRoleToPartner(String userId) {
         User user = securityService.getUser();
-        if (!user.getId().equals(userId)) throw new Forbidden();
+        if (!user.getId().equals(userId)) throw new AccessDenied();
         if (user.isPartner()) throw new UserRoleIsAlreadyPartner();
         user.registerToPartner();
         return UserDto.from(user);

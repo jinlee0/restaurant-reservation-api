@@ -29,3 +29,5 @@ api:
     restaurant:
       save: /restaurants
       list: /restaurants
+    reservation:
+      save: /reservations

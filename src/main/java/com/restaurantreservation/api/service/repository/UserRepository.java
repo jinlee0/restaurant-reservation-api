@@ -1,6 +1,6 @@
 package com.restaurantreservation.api.service.repository;
 
-import com.restaurantreservation.api.service.entity.User;
+import com.restaurantreservation.api.service.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

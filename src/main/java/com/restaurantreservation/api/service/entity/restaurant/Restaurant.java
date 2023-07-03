@@ -1,9 +1,12 @@
 package com.restaurantreservation.api.service.entity.restaurant;
 
 import com.restaurantreservation.api.service.entity.BaseEntity;
-import com.restaurantreservation.api.service.entity.User;
+import com.restaurantreservation.api.service.entity.user.User;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
