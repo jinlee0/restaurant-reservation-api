@@ -30,6 +30,7 @@ import java.time.format.DateTimeFormatter;
 import static org.mockito.BDDMockito.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -119,7 +120,7 @@ class UserControllerTest {
 
         mvc
             .perform(
-                post(base + registerUserAsPartner, user.getId())
+                put(base + registerUserAsPartner, user.getId())
                     .accept(MediaType.APPLICATION_JSON)
                     .contentType(MediaType.APPLICATION_JSON)
             ).andExpect(status().isOk())

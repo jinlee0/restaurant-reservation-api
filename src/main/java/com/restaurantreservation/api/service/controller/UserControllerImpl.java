@@ -22,7 +22,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    @PostMapping("${api.v1.user.update-role}")
+    @PutMapping("${api.v1.user.update-role}")
     @ResponseStatus(HttpStatus.OK)
     public PutUserRoleDto.Response registerCustomerAsPartner(@PathVariable String userId) {
         return PutUserRoleDto.Response.from(userService.updateUserRoleToPartner(userId));
