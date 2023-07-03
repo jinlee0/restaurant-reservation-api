@@ -6,5 +6,5 @@ import com.restaurantreservation.api.service.dto.user.UserDto;
 public interface UserService {
     UserDto saveUser(SignupDto.Request dto);
 
-    UserDto updateUserRoleToPartner();
+    UserDto updateUserRoleToPartner(String userId);
 }

@@ -46,7 +46,7 @@ class UserControllerTest {
     String base;
     @Value("${api.v1.user.signup}")
     String signup;
-    @Value("${api.v1.user.register-user-as-partner}")
+    @Value("${api.v1.user.update-role}")
     String registerUserAsPartner;
 
     @Test
@@ -103,16 +103,13 @@ class UserControllerTest {
     @Test
     @DisplayName("registerUserAsPartner 성공")
     void registerUserAsPartnerBasicPath() throws Exception {
-        User user = MockData.securityUser(
-            "email@a.com",
-            "asdf1234",
-            UserRole.ROLE_CUSTOMER
-        );
+        User user = MockData.securityUser(UserRole.ROLE_CUSTOMER);
         given(
-            userService.updateUserRoleToPartner()
+            userService.updateUserRoleToPartner(user.getId())
         ).willReturn(
             UserDto
                 .builder()
+                .id(user.getId())
                 .email(user.getEmail())
                 .role(UserRole.ROLE_PARTNER)
                 .createdAt(user.getCreatedAt())
@@ -122,10 +119,11 @@ class UserControllerTest {
 
         mvc
             .perform(
-                post(base + registerUserAsPartner)
+                post(base + registerUserAsPartner, user.getId())
                     .accept(MediaType.APPLICATION_JSON)
                     .contentType(MediaType.APPLICATION_JSON)
             ).andExpect(status().isOk())
+            .andExpect(jsonPath("$.id").value(user.getId()))
             .andExpect(jsonPath("$.email").value(user.getEmail()))
             .andExpect(jsonPath("$.role").value(UserRole.ROLE_PARTNER.toString()))
             .andExpect(jsonPath("$.createdAt").value(user.getCreatedAt().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)))

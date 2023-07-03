@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
 
-@Data
 @NoArgsConstructor
 public class RetrieveRestaurantDto extends PageDtoBase<RetrieveRestaurantDto.RestaurantInfo> {
     private RetrieveRestaurantDto(Page<Restaurant> page) {
@@ -21,6 +20,7 @@ public class RetrieveRestaurantDto extends PageDtoBase<RetrieveRestaurantDto.Res
 
     @Data
     public static class RestaurantInfo {
+        private String id;
         private String name;
         private String description;
         private String addressMain;
@@ -32,6 +32,7 @@ public class RetrieveRestaurantDto extends PageDtoBase<RetrieveRestaurantDto.Res
         private LocalDateTime updatedAt;
 
         private RestaurantInfo(Restaurant r) {
+            id = r.getId();
             name = r.getName();
             description = r.getDescription();
             addressMain = r.getLocation().getAddress().getMain();

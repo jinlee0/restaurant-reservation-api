@@ -1,7 +1,7 @@
 package com.restaurantreservation.api.service.controller;
 
 import com.restaurantreservation.api.service.appservice.UserService;
-import com.restaurantreservation.api.service.dto.user.RegisterUserAsPartnerDto;
+import com.restaurantreservation.api.service.dto.user.PutUserRoleDto;
 import com.restaurantreservation.api.service.dto.user.SignupDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,9 +22,9 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    @PostMapping("${api.v1.user.register-user-as-partner}")
+    @PostMapping("${api.v1.user.update-role}")
     @ResponseStatus(HttpStatus.OK)
-    public RegisterUserAsPartnerDto.Response registerCustomerAsPartner() {
-        return RegisterUserAsPartnerDto.Response.from(userService.updateUserRoleToPartner());
+    public PutUserRoleDto.Response registerCustomerAsPartner(@PathVariable String userId) {
+        return PutUserRoleDto.Response.from(userService.updateUserRoleToPartner(userId));
     }
 }

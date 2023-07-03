@@ -21,13 +21,21 @@ public class SignupDto {
 
     @Data
     @AllArgsConstructor
+    @Builder
     public static class Response {
+        private String id;
         private String email;
         private LocalDateTime createdAt;
         private UserRole role;
 
-        public static Response from(UserDto saveUser) {
-            return new Response(saveUser.getEmail(), saveUser.getCreatedAt(), saveUser.getRole());
+        public static Response from(UserDto userDto) {
+            return Response
+                .builder()
+                .id(userDto.getId())
+                .email(userDto.getEmail())
+                .createdAt(userDto.getCreatedAt())
+                .role(userDto.getRole())
+                .build();
         }
     }
 }

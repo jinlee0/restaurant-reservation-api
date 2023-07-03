@@ -51,7 +51,7 @@ class RestaurantManagementControllerTest {
     @Test
     @DisplayName("음식점 등록 성공")
     void registerRestaurantBasicPath() throws Exception {
-        User manager = MockData.securityUser("email@a.com", "asdf1234", UserRole.ROLE_PARTNER);
+        User manager = MockData.securityUser(UserRole.ROLE_PARTNER);
         String name = UUID.randomUUID().toString();
         String description = UUID.randomUUID().toString();
         String addressMain = UUID.randomUUID().toString();
@@ -107,7 +107,7 @@ class RestaurantManagementControllerTest {
     @Test
     @DisplayName("음식점 등록 실패: role")
     void registerWrongRole() throws Exception {
-        User manager = MockData.securityUser("email@a.com", "asdf1234", UserRole.ROLE_CUSTOMER);
+        User manager = MockData.securityUser(UserRole.ROLE_CUSTOMER);
         String name = UUID.randomUUID().toString();
         String description = UUID.randomUUID().toString();
         String addressMain = UUID.randomUUID().toString();

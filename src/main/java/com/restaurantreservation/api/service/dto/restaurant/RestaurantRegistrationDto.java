@@ -30,6 +30,7 @@ public class RestaurantRegistrationDto {
     @Data
     @Builder
     public static class Response {
+        private String id;
         private String name;
         private String description;
         private String addressMain;
@@ -41,6 +42,7 @@ public class RestaurantRegistrationDto {
 
         public static Response from(RestaurantDto dto) {
             return Response.builder()
+                .id(dto.getId())
                 .name(dto.getName())
                 .description(dto.getDescription())
                 .addressMain(dto.getAddressMain())

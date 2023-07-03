@@ -15,6 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -31,6 +32,8 @@ class UserServiceTest {
     UserRepository userRepository;
     @Mock
     SecurityService securityService;
+    @Mock
+    PasswordEncoder passwordEncoder;
 
     @Test
     @DisplayName("save 성공")
@@ -95,7 +98,7 @@ class UserServiceTest {
         given(securityService.getUser())
             .willReturn(exp);
 
-        UserDto act = userService.updateUserRoleToPartner();
+        UserDto act = userService.updateUserRoleToPartner(exp.getId());
 
         assertNotNull(act);
         assertEquals(exp.getEmail(), act.getEmail());
@@ -107,8 +110,9 @@ class UserServiceTest {
     @Test
     @DisplayName("update role to partner 실패: already partner")
     void alreadyPartner() {
+        String id = UUID.randomUUID().toString();
         given(securityService.getUser())
-            .willReturn(User.builder().role(UserRole.ROLE_PARTNER).build());
-        assertThrows(UserRoleIsAlreadyPartner.class, () -> userService.updateUserRoleToPartner());
+            .willReturn(User.builder().id(id).role(UserRole.ROLE_PARTNER).build());
+        assertThrows(UserRoleIsAlreadyPartner.class, () -> userService.updateUserRoleToPartner(id));
     }
 }

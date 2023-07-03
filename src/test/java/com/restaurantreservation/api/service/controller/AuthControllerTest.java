@@ -48,8 +48,7 @@ class AuthControllerTest {
     @Test
     @DisplayName("authenticate 성공")
     void authenticateBasicPath() throws Exception {
-        String rawPsd = "asdf1234";
-        User user = MockData.securityUser("email@a.com", rawPsd, UserRole.ROLE_CUSTOMER);
+        User user = MockData.securityUser( UserRole.ROLE_CUSTOMER);
 
         String token = "Bearer dkfjsdofkejfdkfj";
         given(
@@ -60,7 +59,7 @@ class AuthControllerTest {
                 .token(token)
                 .build()
         );
-
+        System.out.println(user.getEmail() + " " + user.getPassword());
         mvc.perform(
                 post(base + authenticate)
                     .accept(MediaType.APPLICATION_JSON)
@@ -69,7 +68,7 @@ class AuthControllerTest {
                         objectMapper.writeValueAsString(
                             AuthenticateDto.Request.builder()
                                 .email(user.getEmail())
-                                .password(rawPsd)
+                                .password(user.getPassword())
                                 .build()
                         ))
             )

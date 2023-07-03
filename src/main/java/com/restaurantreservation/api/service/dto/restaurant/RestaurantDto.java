@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class RestaurantDto {
+    private String id;
     private String name;
     private String description;
     private String addressMain;
@@ -21,6 +22,7 @@ public class RestaurantDto {
 
     public static RestaurantDto from(Restaurant restaurant) {
         return RestaurantDto.builder()
+            .id(restaurant.getId())
             .name(restaurant.getName())
             .description(restaurant.getDescription())
             .addressMain(restaurant.getLocation().getAddress().getMain())

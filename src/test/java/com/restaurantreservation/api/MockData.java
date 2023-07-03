@@ -17,10 +17,11 @@ import java.util.Random;
 import java.util.UUID;
 
 public class MockData {
-    public static User securityUser(String email, String password, UserRole role) {
+    public static User securityUser(UserRole role) {
         User user = User.builder()
-            .email(email)
-            .password(password)
+            .id(UUID.randomUUID().toString())
+            .email("email@a.com")
+            .password("asdf12323")
             .role(role)
             .build();
         // unsafe code
