@@ -69,6 +69,7 @@ class ReservationManagementTest {
         assertEquals(exp.getRequirements(), act.getRequirements());
         assertEquals(exp.getNumberOfPeople(), act.getNumberOfPeople());
         assertEquals(exp.getDateTime(), act.getDateTime());
+        assertEquals(exp.getContactPhoneNumber(), act.getContactPhoneNumber());
         assertEquals(exp.getStatus().getType(), act.getType());
         assertEquals(exp.getStatus().getTypeSetAt(), act.getTypeSetAt());
     }

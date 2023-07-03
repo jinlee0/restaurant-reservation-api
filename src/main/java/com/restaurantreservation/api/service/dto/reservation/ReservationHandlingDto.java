@@ -1,43 +1,31 @@
 package com.restaurantreservation.api.service.dto.reservation;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import com.restaurantreservation.api.service.entity.reservation.ReservationType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-public class ReservationRequestDto {
-    @Getter
+public class ReservationHandlingDto {
     @AllArgsConstructor
     @Builder
+    @Getter
+    @NoArgsConstructor
     public static class Request {
-        @NotNull
-        private LocalDateTime dateTime;
-        @NotNull
-        @Min(1)
-        private Integer numberOfPeople;
-        private String requirements = "";
-        @NotBlank
-        private String contactPhoneNumber;
-        @NotNull
-        private String restaurantId;
-        @NotNull
-        private String customerId;
+        private ReservationType type;
     }
 
-    @Getter
     @AllArgsConstructor
     @Builder
+    @Getter
     public static class Response {
         private String id;
         private LocalDateTime createdAt;
         private LocalDateTime dateTime;
         private Integer numberOfPeople;
         private String requirements;
-        private String contactPhoneNumber;
         private String restaurantId;
         private String customerId;
 
@@ -49,10 +37,10 @@ public class ReservationRequestDto {
                 .dateTime(dto.getDateTime())
                 .numberOfPeople(dto.getNumberOfPeople())
                 .requirements(dto.getRequirements())
-                .contactPhoneNumber(dto.getContactPhoneNumber())
                 .restaurantId(dto.getRestaurantId())
                 .customerId(dto.getCustomerId())
                 .build();
         }
+
     }
 }

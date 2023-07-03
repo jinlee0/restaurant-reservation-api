@@ -18,6 +18,7 @@ public class ReservationDto {
     private LocalDateTime dateTime;
     private Integer numberOfPeople;
     private String requirements;
+    private String contactPhoneNumber;
     private ReservationType type;
     private LocalDateTime typeSetAt;
     private String customerId;
@@ -32,6 +33,7 @@ public class ReservationDto {
             .dateTime(r.getDateTime())
             .numberOfPeople(r.getNumberOfPeople())
             .requirements(r.getRequirements())
+            .contactPhoneNumber(r.getContactPhoneNumber())
             .type(r.getStatus().getType())
             .typeSetAt(r.getStatus().getTypeSetAt())
             .customerId(r.getCustomer().getId())

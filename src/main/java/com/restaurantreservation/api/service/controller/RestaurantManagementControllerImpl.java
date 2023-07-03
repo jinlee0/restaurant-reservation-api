@@ -2,7 +2,7 @@ package com.restaurantreservation.api.service.controller;
 
 import com.restaurantreservation.api.service.appservice.RestaurantManagementService;
 import com.restaurantreservation.api.service.dto.restaurant.RestaurantRegistrationDto;
-import com.restaurantreservation.api.service.dto.restaurant.RetrieveRestaurantDto;
+import com.restaurantreservation.api.service.dto.restaurant.RestaurantRetrieveDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -27,8 +27,8 @@ public class RestaurantManagementControllerImpl implements RestaurantManagementC
     @Override
     @GetMapping("${api.v1.restaurant.list}")
     @ResponseStatus(HttpStatus.OK)
-    public RetrieveRestaurantDto retrieveRestaurants(Pageable pageable) {
-        return RetrieveRestaurantDto.from(restaurantManagementService.retrieveRestaurants(pageable));
+    public RestaurantRetrieveDto retrieveRestaurants(Pageable pageable) {
+        return RestaurantRetrieveDto.from(restaurantManagementService.retrieveRestaurants(pageable));
     }
 
 }

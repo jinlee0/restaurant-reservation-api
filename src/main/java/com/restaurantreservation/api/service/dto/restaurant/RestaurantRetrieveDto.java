@@ -9,13 +9,13 @@ import org.springframework.data.domain.Page;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
-public class RetrieveRestaurantDto extends PageDtoBase<RetrieveRestaurantDto.RestaurantInfo> {
-    private RetrieveRestaurantDto(Page<Restaurant> page) {
+public class RestaurantRetrieveDto extends PageDtoBase<RestaurantRetrieveDto.RestaurantInfo> {
+    private RestaurantRetrieveDto(Page<Restaurant> page) {
         super(page, page.getContent().stream().map(RestaurantInfo::new).toList());
     }
 
-    public static RetrieveRestaurantDto from(Page<Restaurant> page) {
-        return new RetrieveRestaurantDto(page);
+    public static RestaurantRetrieveDto from(Page<Restaurant> page) {
+        return new RestaurantRetrieveDto(page);
     }
 
     @Data

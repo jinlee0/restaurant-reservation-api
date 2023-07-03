@@ -31,3 +31,4 @@ api:
       list: /restaurants
     reservation:
       save: /reservations
+      update-type: /reservations/{reservationId}/type

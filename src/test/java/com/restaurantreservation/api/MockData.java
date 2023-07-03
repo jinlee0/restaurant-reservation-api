@@ -95,6 +95,7 @@ public class MockData {
             .dateTime(now.plusDays(7))
             .numberOfPeople(new Random().nextInt(1, 10))
             .requirements(UUID.randomUUID().toString())
+            .contactPhoneNumber("01012341234")
             .status(
                 VoReservationStatus
                     .builder()
