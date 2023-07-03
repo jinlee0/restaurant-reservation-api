@@ -22,7 +22,8 @@ public enum ErrorCode {
     NOT_REQUEST_STATUS(HttpStatus.BAD_REQUEST),
     CONFIRMED_RESERVATION_CANNOT_CHANGE_OTHER_THAN_VISIT(HttpStatus.BAD_REQUEST),
     TOO_CLOSE_RESERVATION_TIME(HttpStatus.BAD_REQUEST),
-    NOT_REVIEWABLE_RESERVATION(HttpStatus.BAD_REQUEST)
+    NOT_REVIEWABLE_RESERVATION(HttpStatus.BAD_REQUEST),
+    PARTNER_HAS_NO_RESTAURANT(HttpStatus.BAD_REQUEST)
     ;
     private final HttpStatus httpStatus;
     private final String message;

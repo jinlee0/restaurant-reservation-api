@@ -26,6 +26,7 @@ public class ReviewControllerImpl implements ReviewController {
 
     @Override
     @GetMapping("${api.v1.review.list}")
+    @ResponseStatus(HttpStatus.OK)
     public ReviewRetrieveDto retrieveReviews(Pageable pageable) {
         return reviewService.retrieve(pageable);
     }

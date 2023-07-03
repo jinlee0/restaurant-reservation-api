@@ -20,8 +20,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Objects;
-
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -110,7 +108,9 @@ public class ReservationManagementServiceImpl implements ReservationManagementSe
         User manager = securityService.getUser();
         if (!manager.isPartner())
             throw new AccessDenied();
-        Page<Reservation> page = reservationRepository.findAllByManager(pageable);
+        Restaurant restaurant = restaurantRepository.findByManager(manager)
+            .orElseThrow(PartnerHasNoRestaurant::new);
+        Page<Reservation> page = reservationRepository.findAllByRestaurant(restaurant, pageable);
         return ReservationRetrieveDto.from(page);
     }
 }
