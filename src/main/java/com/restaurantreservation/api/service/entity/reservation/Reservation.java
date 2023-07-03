@@ -75,4 +75,8 @@ public class Reservation extends BaseEntity {
             .typeSetAt(LocaleUtil.DateTime.now())
             .build();
     }
+
+    public boolean reviewable() {
+        return this.status.getType() == ReservationType.VISITED;
+    }
 }

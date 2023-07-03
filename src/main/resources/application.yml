@@ -32,3 +32,6 @@ api:
     reservation:
       save: /reservations
       update-type: /reservations/{reservationId}/type
+    review:
+      save: /reservations/{reservationId}/reviews
+      list: /reviews
