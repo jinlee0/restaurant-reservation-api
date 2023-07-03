@@ -18,21 +18,20 @@ jwt:
   expired-millis: 86400000
 
 api:
-  v1:
-    pub: ${api.v1.auth.authenticate}, ${api.v1.user.signup}, ${api.v1.restaurant.list}
-    base: /api/v1
-    auth:
-      authenticate: /authenticate
-    user:
-      signup: /users/signup
-      update-role: /users/{userId}/role
-    restaurant:
-      save: /restaurants
-      list: /restaurants
-    reservation:
-      save: /reservations
-      update-type: /reservations/{reservationId}/type
-      list: /reservations
-    review:
-      save: /reservations/{reservationId}/reviews
-      list: /reviews
+  pub: ${api.auth.authenticate}, ${api.user.signup}, ${api.restaurant.list}
+  base: /api/v1
+  auth:
+    authenticate: /authenticate
+  user:
+    signup: /users/signup
+    update-role: /users/{userId}/role
+  restaurant:
+    save: /restaurants
+    list: /restaurants
+  reservation:
+    save: /reservations
+    update-type: /reservations/{reservationId}/type
+    list: /reservations
+  review:
+    save: /reservations/{reservationId}/reviews
+    list: /reviews

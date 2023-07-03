@@ -40,9 +40,9 @@ class AuthControllerTest {
     MockMvc mvc;
     @Autowired
     ObjectMapper objectMapper;
-    @Value("${api.v1.base}")
+    @Value("${api.base}")
     String base;
-    @Value("${api.v1.auth.authenticate}")
+    @Value("${api.auth.authenticate}")
     String authenticate;
 
     @Test

@@ -42,9 +42,9 @@ class ReservationManagementControllerTest {
     MockMvc mvc;
     @Autowired
     ObjectMapper objectMapper;
-    @Value("${api.v1.base}")
+    @Value("${api.base}")
     String base;
-    @Value("${api.v1.reservation.save}")
+    @Value("${api.reservation.save}")
     String savePath;
 
     @Test
@@ -86,6 +86,7 @@ class ReservationManagementControllerTest {
                                 .requirements(exp.getRequirements())
                                 .restaurantId(exp.getRestaurant().getId())
                                 .customerId(exp.getCustomer().getId())
+                                .contactPhoneNumber(exp.getContactPhoneNumber())
                                 .build()
                         )
                     )

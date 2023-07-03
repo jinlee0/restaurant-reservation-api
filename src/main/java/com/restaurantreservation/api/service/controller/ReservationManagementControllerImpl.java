@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("${api.v1.base}")
+@RequestMapping("${api..base}")
 public class ReservationManagementControllerImpl implements ReservationManagementController {
     private final ReservationManagementService reservationManagementService;
 
     @Override
-    @PostMapping("${api.v1.reservation.save}")
+    @PostMapping("${api.reservation.save}")
     @ResponseStatus(HttpStatus.CREATED)
     public ReservationRequestDto.Response requestReservation(@RequestBody @Valid ReservationRequestDto.Request dto) {
         return ReservationRequestDto.Response.from(reservationManagementService.saveReservation(dto));
     }
 
     @Override
-    @PutMapping("${api.v1.reservation.update-type}")
+    @PutMapping("${api.reservation.update-type}")
     @ResponseStatus(HttpStatus.OK)
     public ReservationHandlingDto.Response handleReservation(
         @PathVariable String reservationId,
@@ -35,7 +35,7 @@ public class ReservationManagementControllerImpl implements ReservationManagemen
     }
 
     @Override
-    @GetMapping("${api.v1.reservation.list}")
+    @GetMapping("${api.reservation.list}")
     @PreAuthorize("hasRole('ROLE_PARTNER')")
     public ReservationRetrieveDto retrieveReservations(Pageable pageable) {
         return reservationManagementService.retrieve(pageable);

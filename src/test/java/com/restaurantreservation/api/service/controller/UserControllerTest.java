@@ -43,11 +43,11 @@ class UserControllerTest {
     MockMvc mvc;
     @Autowired
     ObjectMapper objectMapper;
-    @Value("${api.v1.base}")
+    @Value("${api.base}")
     String base;
-    @Value("${api.v1.user.signup}")
+    @Value("${api.user.signup}")
     String signup;
-    @Value("${api.v1.user.update-role}")
+    @Value("${api.user.update-role}")
     String registerUserAsPartner;
 
     @Test

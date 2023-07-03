@@ -8,13 +8,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("${api.v1.base}")
+@RequestMapping("${api.base}")
 @RequiredArgsConstructor
 public class AuthControllerImpl implements AuthController {
     private final AuthService authService;
 
     @Override
-    @PostMapping("${api.v1.auth.authenticate}")
+    @PostMapping("${api.auth.authenticate}")
     @ResponseStatus(HttpStatus.OK)
     public AuthenticateDto.Response authenticate(@RequestBody @Valid AuthenticateDto.Request loginRequestDto) {
         return AuthenticateDto.Response.from(authService.authenticate(loginRequestDto));

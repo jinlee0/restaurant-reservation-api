@@ -28,9 +28,9 @@ public class SecurityConfig {
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     private final JwtSecurityConfigAdapter jwtSecurityConfigAdapter;
 
-    @Value("${api.v1.pub}")
+    @Value("${api.pub}")
     private String[] publicPaths;
-    @Value("${api.v1.base}")
+    @Value("${api.base}")
     private String pathBase;
 
     @Bean

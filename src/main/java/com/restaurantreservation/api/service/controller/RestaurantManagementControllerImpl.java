@@ -11,13 +11,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("${api.v1.base}")
+@RequestMapping("${api.base}")
 @RequiredArgsConstructor
 
 public class RestaurantManagementControllerImpl implements RestaurantManagementController {
     private final RestaurantManagementService restaurantManagementService;
     @Override
-    @PostMapping("${api.v1.restaurant.save}")
+    @PostMapping("${api.restaurant.save}")
     @PreAuthorize("hasRole('ROLE_PARTNER')")
     @ResponseStatus(HttpStatus.CREATED)
     public RestaurantRegistrationDto.Response registerRestaurant(@RequestBody @Valid RestaurantRegistrationDto.Request dto) {
@@ -25,7 +25,7 @@ public class RestaurantManagementControllerImpl implements RestaurantManagementC
     }
 
     @Override
-    @GetMapping("${api.v1.restaurant.list}")
+    @GetMapping("${api.restaurant.list}")
     @ResponseStatus(HttpStatus.OK)
     public RestaurantRetrieveDto retrieveRestaurants(Pageable pageable) {
         return RestaurantRetrieveDto.from(restaurantManagementService.retrieveRestaurants(pageable));

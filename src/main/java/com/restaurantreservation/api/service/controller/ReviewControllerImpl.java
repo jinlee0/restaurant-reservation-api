@@ -10,12 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("${api.v1.base}")
+@RequestMapping("${api.base}")
 @RequiredArgsConstructor
 public class ReviewControllerImpl implements ReviewController {
     private final ReviewService reviewService;
     @Override
-    @PostMapping("${api.v1.review.save}")
+    @PostMapping("${api.review.save}")
     @ResponseStatus(HttpStatus.CREATED)
     public ReviewWritingDto.Response writeReview(
         @PathVariable String reservationId,
@@ -25,7 +25,7 @@ public class ReviewControllerImpl implements ReviewController {
     }
 
     @Override
-    @GetMapping("${api.v1.review.list}")
+    @GetMapping("${api.review.list}")
     @ResponseStatus(HttpStatus.OK)
     public ReviewRetrieveDto retrieveReviews(Pageable pageable) {
         return reviewService.retrieve(pageable);

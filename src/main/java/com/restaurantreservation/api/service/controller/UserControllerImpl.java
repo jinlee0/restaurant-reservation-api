@@ -9,20 +9,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("${api.v1.base}")
+@RequestMapping("${api.base}")
 @RequiredArgsConstructor
 public class UserControllerImpl implements UserController {
     private final UserService userService;
 
     @Override
-    @PostMapping("${api.v1.user.signup}")
+    @PostMapping("${api.user.signup}")
     @ResponseStatus(HttpStatus.CREATED)
     public SignupDto.Response signup(@RequestBody @Valid SignupDto.Request dto) {
         return SignupDto.Response.from(userService.saveUser(dto));
     }
 
     @Override
-    @PutMapping("${api.v1.user.update-role}")
+    @PutMapping("${api.user.update-role}")
     @ResponseStatus(HttpStatus.OK)
     public PutUserRoleDto.Response registerCustomerAsPartner(@PathVariable String userId) {
         return PutUserRoleDto.Response.from(userService.updateUserRoleToPartner(userId));

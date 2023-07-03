@@ -43,9 +43,9 @@ class RestaurantManagementControllerTest {
     MockMvc mvc;
     @Autowired
     ObjectMapper objectMapper;
-    @Value("${api.v1.base}")
+    @Value("${api.base}")
     String base;
-    @Value("${api.v1.restaurant.save}")
+    @Value("${api.restaurant.save}")
     String restaurantPath;
 
     @Test
@@ -59,7 +59,6 @@ class RestaurantManagementControllerTest {
         Double latitude = new Random().nextDouble(-90, 91);
         Double longitude = new Random().nextDouble(-180, 181);
         LocalDateTime createdAt = LocaleUtil.DateTime.now();
-        LocalDateTime updatedAt = createdAt;
 
         given(restaurantManagementService.saveRestaurant(any()))
             .willReturn(
@@ -72,7 +71,7 @@ class RestaurantManagementControllerTest {
                     .latitude(latitude)
                     .longitude(longitude)
                     .createdAt(createdAt)
-                    .updatedAt(updatedAt)
+                    .updatedAt(createdAt)
                     .build()
             );
 
@@ -107,6 +106,7 @@ class RestaurantManagementControllerTest {
     @Test
     @DisplayName("음식점 등록 실패: role")
     void registerWrongRole() throws Exception {
+        MockData.securityUser(UserRole.ROLE_CUSTOMER);
         String name = UUID.randomUUID().toString();
         String description = UUID.randomUUID().toString();
         String addressMain = UUID.randomUUID().toString();
